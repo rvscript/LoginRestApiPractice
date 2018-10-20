@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">LoginRestApi101</string>
+    <string name="login_screen_main_text">Login Screen</string>
+    <string name="hint_username">username</string>
+    <string name="bt_login_screen">Login</string>
+    <string name="bt_user_activity_repositories">Repositories</string>
+</resources>

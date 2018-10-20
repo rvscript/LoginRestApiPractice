@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    tools:context=".activities.LoginScreenMain">
+
+    <TextView
+        android:id="@+id/loginScreenText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/et_login_screen_margin"
+        android:gravity="top"
+        android:text="@string/login_screen_main_text"
+        android:textSize="@dimen/tv_login_screen_text_size" />
+
+    <EditText
+        android:id="@+id/et_loginScreen"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/et_login_screen_height"
+        android:layout_below="@+id/loginScreenText"
+        android:layout_margin="@dimen/et_login_screen_margin"
+        android:hint="@string/hint_username"
+        android:textSize="@dimen/et_login_screen_text_size" />
+
+    <Button
+        android:id="@+id/bt_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/et_loginScreen"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/bt_login_screen_marginTop"
+        android:padding="@dimen/bt_login_screen_padding"
+        android:text="@string/bt_login_screen"
+        android:onClick="loginOnClick"/>
+
+</RelativeLayout>
