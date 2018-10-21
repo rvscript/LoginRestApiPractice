@@ -1,5 +1,6 @@
-package com.example.ga_mlsdiscovery.loginrestapi101.activities;
+package com.example.ga_mlsdiscovery.loginrestapi101.views;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,12 +8,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.ga_mlsdiscovery.loginrestapi101.R;
 import com.example.ga_mlsdiscovery.loginrestapi101.models.GitHubUser;
 import com.example.ga_mlsdiscovery.loginrestapi101.rest.ApiClient;
 import com.example.ga_mlsdiscovery.loginrestapi101.rest.GitHubUserEndPoints;
 import com.example.ga_mlsdiscovery.loginrestapi101.utilities.ImageLoader;
+import com.example.ga_mlsdiscovery.loginrestapi101.views.repositories.Repositories;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -46,7 +49,11 @@ public class UserActivity extends AppCompatActivity {
         //debug code
         System.out.println(newString);
 
-        loadData();
+        if(newString != null && !newString.isEmpty()) {
+            loadData();
+        } else {
+            tv_username.setText("No User Defined");
+        }
     }
 
     private void loadData() {
@@ -59,6 +66,7 @@ public class UserActivity extends AppCompatActivity {
                 tv_followers.setText("Followers: "+ response.body().getFollowers());
                 tv_following.setText("Following: "+ response.body().getFollowing());
                 tv_login.setText("Login: "+ response.body().getLogin());
+
                 if (response.body().getEmail() == null) {
                     tv_email.setText("No email was provided");
                 } else {
@@ -74,8 +82,8 @@ public class UserActivity extends AppCompatActivity {
 
                 if(myImage != null) {
                     iv_avatar.setImageBitmap(myImage);
-                    iv_avatar.getLayoutParams().height = 200;
-                    iv_avatar.getLayoutParams().width = 200;
+                    iv_avatar.getLayoutParams().height = 400;
+                    iv_avatar.getLayoutParams().width = 400;
                 }
             }
 
@@ -88,5 +96,12 @@ public class UserActivity extends AppCompatActivity {
     }
 
     public void loadOwnReposOnClick(View view) {
+        if(!tv_username.getText().toString().isEmpty()){
+            Intent i = new Intent(UserActivity.this, Repositories.class);
+            i.putExtra("username", newString);
+            startActivity(i);
+        } else {
+            Toast.makeText(this, "Username NOT defined", Toast.LENGTH_SHORT).show();
+        }
     }
 }

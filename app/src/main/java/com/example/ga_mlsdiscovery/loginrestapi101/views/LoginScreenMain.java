@@ -1,11 +1,12 @@
-package com.example.ga_mlsdiscovery.loginrestapi101.activities;
+package com.example.ga_mlsdiscovery.loginrestapi101.views;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.ga_mlsdiscovery.loginrestapi101.R;
 
@@ -24,8 +25,12 @@ public class LoginScreenMain extends AppCompatActivity {
     }
 
     public void loginOnClick(View view) {
-        i = new Intent(LoginScreenMain.this, UserActivity.class);
-        i.putExtra("STRING_I_NEED", et_username.getText().toString());
-        startActivity(i);
+        if(!et_username.getText().toString().isEmpty()){
+            i = new Intent(LoginScreenMain.this, UserActivity.class);
+            i.putExtra("STRING_I_NEED", et_username.getText().toString());
+            startActivity(i);
+        } else {
+            Toast.makeText(this, "Username NOT defined", Toast.LENGTH_SHORT).show();
+        }
     }
 }

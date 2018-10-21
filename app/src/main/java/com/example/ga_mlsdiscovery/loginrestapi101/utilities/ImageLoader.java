@@ -11,11 +11,12 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class ImageLoader extends AsyncTask<String, Void, Bitmap> {
+    HttpURLConnection connection;
     @Override
     protected Bitmap doInBackground(String... urls) {
         try {
             URL url = new URL(urls[0]);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection = (HttpURLConnection) url.openConnection();
             connection.connect();
             InputStream inputStream = connection.getInputStream();
             Bitmap myBitmap = BitmapFactory.decodeStream(inputStream);
@@ -25,6 +26,7 @@ public class ImageLoader extends AsyncTask<String, Void, Bitmap> {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        connection.disconnect();
         return null;
     }
 }
