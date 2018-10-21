@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_margin="@dimen/et_login_screen_margin"
+        android:padding="@dimen/tv_user_activity_margin_top"
         android:gravity="top"
         android:text="@string/login_screen_main_text"
         android:textSize="@dimen/tv_login_screen_text_size" />

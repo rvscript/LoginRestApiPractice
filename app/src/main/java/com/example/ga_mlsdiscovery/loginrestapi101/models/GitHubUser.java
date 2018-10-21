@@ -1,10 +1,22 @@
 package com.example.ga_mlsdiscovery.loginrestapi101.models;
 
 import android.os.Parcel;
-import android.os.Parcelable;
+import com.google.gson.annotations.SerializedName;
 
-public class GitHubUser implements Parcelable {
-    String email, avatar, following, followers, name, login;
+public class GitHubUser {
+
+    @SerializedName("email")
+    private String email;
+    @SerializedName("avatar_url")
+    private String avatar;
+    @SerializedName("following")
+    private String following;
+    @SerializedName("followers")
+    private String followers;
+    @SerializedName("name")
+    private String name;
+    @SerializedName("login")
+    private String login;
 
     public GitHubUser(String email, String avatar, String following, String followers, String name, String login) {
         this.email = email;
@@ -23,18 +35,6 @@ public class GitHubUser implements Parcelable {
         name = in.readString();
         login = in.readString();
     }
-
-    public static final Creator<GitHubUser> CREATOR = new Creator<GitHubUser>() {
-        @Override
-        public GitHubUser createFromParcel(Parcel in) {
-            return new GitHubUser(in);
-        }
-
-        @Override
-        public GitHubUser[] newArray(int size) {
-            return new GitHubUser[size];
-        }
-    };
 
     public String getEmail() {
         return email;
@@ -84,18 +84,4 @@ public class GitHubUser implements Parcelable {
         this.login = login;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(email);
-        dest.writeString(avatar);
-        dest.writeString(following);
-        dest.writeString(followers);
-        dest.writeString(name);
-        dest.writeString(login);
-    }
 }
