@@ -1,5 +1,6 @@
 package com.example.ga_mlsdiscovery.loginrestapi101.activities;
 
+import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +12,7 @@ import com.example.ga_mlsdiscovery.loginrestapi101.R;
 import com.example.ga_mlsdiscovery.loginrestapi101.models.GitHubUser;
 import com.example.ga_mlsdiscovery.loginrestapi101.rest.ApiClient;
 import com.example.ga_mlsdiscovery.loginrestapi101.rest.GitHubUserEndPoints;
+import com.example.ga_mlsdiscovery.loginrestapi101.utilities.ImageLoader;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -23,6 +25,7 @@ public class UserActivity extends AppCompatActivity {
     Button bt_ownedrepos;
     Bundle extras;
     String newString;
+    Bitmap myImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +63,19 @@ public class UserActivity extends AppCompatActivity {
                     tv_email.setText("No email was provided");
                 } else {
                     tv_email.setText("Email: "+ response.body().getEmail());
+                }
+
+                ImageLoader task = new ImageLoader();
+                try {
+                    myImage = task.execute(response.body().getAvatar()).get();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                if(myImage != null) {
+                    iv_avatar.setImageBitmap(myImage);
+                    iv_avatar.getLayoutParams().height = 200;
+                    iv_avatar.getLayoutParams().width = 200;
                 }
             }
 
